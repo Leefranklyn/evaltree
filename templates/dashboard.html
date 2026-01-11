@@ -40,9 +40,9 @@
             font-size: 1.6rem;
         }
 
-        .header-actions .btn {
+        .navbar .btn {
             border-radius: 50px;
-            padding: 0.65rem 1.5rem;
+            padding: 0.5rem 1.25rem;
             font-weight: 500;
             transition: all 0.3s ease;
         }
@@ -66,6 +66,10 @@
             background-color: #dc3545;
             color: white;
             transform: translateY(-2px);
+        }
+
+        .container-dashboard {
+            padding-top: 110px; /* space for fixed navbar */
         }
 
         .assessment-grid {
@@ -131,25 +135,26 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand fw-bold fs-4" href="/">
-                EvalTree
-            </a>
+            <a class="navbar-brand fw-bold fs-4" href="/">EvalTree</a>
+
+            <!-- Mobile toggler -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarActions" aria-controls="navbarActions" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar buttons -->
+            <div class="collapse navbar-collapse justify-content-end" id="navbarActions">
+                <div class="d-flex gap-3 mt-3 mt-lg-0">
+                    <a href="/admin/create_quiz" class="btn btn-primary">+ Create New Assessment</a>
+                    <a href="/admin/logout" class="btn btn-outline-danger">Logout</a>
+                </div>
+            </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <div class="container" style="padding-top: 90px;">
-        <div class="d-flex justify-content-between align-items-center mb-5 flex-wrap gap-3">
-            <h1 class="mb-0">Admin Dashboard</h1>
-            <div class="header-actions d-flex gap-3">
-                <a href="/admin/create_quiz" class="btn btn-primary">
-                    + Create New Assessment
-                </a>
-                <a href="/admin/logout" class="btn btn-outline-danger">
-                    Logout
-                </a>
-            </div>
-        </div>
+    <div class="container container-dashboard">
+        <h1 class="mb-5">Admin Dashboard</h1>
 
         {% if quizzes %}
         <div class="assessment-grid">
