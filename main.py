@@ -8,7 +8,7 @@ import uvicorn
 
 app = FastAPI()
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory="templates"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 app.include_router(admin.router, prefix="/admin", tags=["admin"])
@@ -26,6 +26,13 @@ async def http_exception_handler(request: Request, exc: HTTPException):
 async def root(request: Request):
     return templates.TemplateResponse(
         "landing.html",
+        {"request": request}
+    )
+
+@app.get("/get-started", response_class=HTMLResponse)
+async def get_started(request: Request):
+    return templates.TemplateResponse(
+        "get_started.html",
         {"request": request}
     )
 
